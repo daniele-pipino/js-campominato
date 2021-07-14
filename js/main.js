@@ -23,6 +23,7 @@ Quando la partita termina, comunichiamo all'utente il suo punteggio. */
 // Creazione dei vari array
 const bomb = [];
 const userChoice = [];
+const userChoiceLenght = 10;
 
 
 // Generazione dei 16 numeri randomici
@@ -34,7 +35,7 @@ function generateBomb(min, max) {
     for (var i = 0; i <= 15; i++) {
         var randomBombnumber = Math.floor(Math.random() * (max - min) + min);
 
-        //* Validazione per verificre che nell'array non siano presentinumeri uguali
+        //? Validazione per verificre che nell'array non siano presentinumeri uguali
         if (!bomb.includes(randomBombnumber)) {
             bomb.push(randomBombnumber);
         } else {
@@ -52,12 +53,23 @@ generateBomb(startNumber, endNumber);
 
 // --------------Scelta numeri utente--------------------
 
-for (var i = 0; i < 10; i++) {
+while (userChoice.length < 10) {
     var userNumber = parseInt(prompt('Inserisci un numero'));
     console.log(userNumber);
-    // todo Validazione
-    userChoice.push(userNumber);
+
+    if (isNaN(userNumber)) {
+        alert('Carattere non valido')
+        var userNumber = parseInt(prompt('Inserisci un numero'));
+    }
+    else if (!userChoice.includes(userNumber)) {
+        userChoice.push(userNumber);
+    } else {
+        alert('Questo numero è stato già inserito');
+        userNumber = parseInt(prompt('Inserisci un numero'));
+    }
 }
+
+
 console.log(userChoice);
 
 
