@@ -72,6 +72,30 @@ while (userChoice.length < 10) {
 
 console.log(userChoice);
 
+//* Confronto tra numeri dell'utente e numeri presenti nell'array delle bombe
+
+function findCommonElement(array1, array2) {
+
+    // loop array bombe
+    for (var i = 0; i < bomb.length; i++) {
+
+        // loop array 2
+        for (var j = 0; j < userChoice.length; j++) {
+
+            // verifica elementi simili
+            if (bomb[i] === userChoice[j]) {
+                return true;
+            }
+        }
+    }
+    // se non ci sono elementi simili
+    return false;
+}
+
+var result = findCommonElement(bomb, userChoice);
+console.log(result);
+
+
 
 
 
