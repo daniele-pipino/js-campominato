@@ -31,15 +31,12 @@ var startNumber = 1;
 var endNumber = 100;
 
 function generateBomb(min, max) {
-
-    for (var i = 0; i <= 15; i++) {
-        var randomBombnumber = Math.floor(Math.random() * (max - min) + min);
+    var randomBombnumber = 0;
+    while (bomb.length < 16) {
+        randomBombnumber = Math.floor(Math.random() * (max - min) + min);
 
         //? Validazione per verificre che nell'array non siano presentinumeri uguali
         if (!bomb.includes(randomBombnumber)) {
-            bomb.push(randomBombnumber);
-        } else {
-            randomBombnumber = Math.floor(Math.random() * (max - min) + min);
             bomb.push(randomBombnumber);
         }
     }
@@ -47,22 +44,24 @@ function generateBomb(min, max) {
     console.log(bomb);
 }
 
-
 //* Invocazione funzione
 generateBomb(startNumber, endNumber);
 
+
+
 // --------------Scelta numeri utente--------------------
 
-while (userChoice.length < 10) {
+while (userChoice.length < 3) {
     var userNumber = parseInt(prompt('Inserisci un numero'));
     console.log(userNumber);
 
     if (isNaN(userNumber)) {
         alert('Carattere non valido')
         var userNumber = parseInt(prompt('Inserisci un numero'));
-    }
-    else if (!userChoice.includes(userNumber)) {
+    } else if (!userChoice.includes(userNumber)) {
         userChoice.push(userNumber);
+    } else if (bomb.includes(userNumber)) {
+        alert('Hai preso una bomba');
     } else {
         alert('Questo numero è stato già inserito');
         userNumber = parseInt(prompt('Inserisci un numero'));
@@ -72,28 +71,9 @@ while (userChoice.length < 10) {
 
 console.log(userChoice);
 
-//* Confronto tra numeri dell'utente e numeri presenti nell'array delle bombe
 
-function findCommonElement(array1, array2) {
 
-    // loop array bombe
-    for (var i = 0; i < bomb.length; i++) {
 
-        // loop array 2
-        for (var j = 0; j < userChoice.length; j++) {
-
-            // verifica elementi simili
-            if (bomb[i] === userChoice[j]) {
-                return true;
-            }
-        }
-    }
-    // se non ci sono elementi simili
-    return false;
-}
-
-var result = findCommonElement(bomb, userChoice);
-console.log(result);
 
 
 
