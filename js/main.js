@@ -51,7 +51,10 @@ function generateBomb(min, max) {
 //* Invocazione funzione
 generateBomb(startNumber, endNumber);
 
+
+// Punteggio
 var scoreCounter = 0;
+score.innerText = scoreCounter;
 
 // --------------Scelta numeri utente --------------------
 
@@ -63,22 +66,25 @@ while (userChoice.length < 5) {
     if (isNaN(userNumber)) {
         alert('Carattere non valido')
     } else if (bomb.includes(userNumber)) {
-        alert('Hai preso una bomba');    // se è una bomba
+        alert('Hai preso una bomba');
+        score.innerText = scoreCounter;
         break;
     } else if (!userChoice.includes(userNumber)) {
         userChoice.push(userNumber);
+        // dichiarazione del punteggio
         scoreCounter++;
+        score.innerText = scoreCounter;
         console.log('Punti: ', scoreCounter);
     } else {
         alert('Questo numero è stato già inserito');
     }
 
-    score.innerText = scoreCounter;
+
 }
 
 console.log(userChoice);
 
-// dichiarazione del punteggio
+
 
 
 
