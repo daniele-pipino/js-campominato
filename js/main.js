@@ -22,8 +22,8 @@ Quando la partita termina, comunichiamo all'utente il suo punteggio. */
 
 // Creazione dei vari array
 const bomb = [];
-const userChoice = [];
-const userChoiceLenght = 10;
+let userChoice = [];
+
 
 
 // Generazione dei 16 numeri randomici
@@ -58,10 +58,11 @@ while (userChoice.length < 3) {
     if (isNaN(userNumber)) {
         alert('Carattere non valido')
         var userNumber = parseInt(prompt('Inserisci un numero'));
-    } else if (!userChoice.includes(userNumber)) {
-        userChoice.push(userNumber);
     } else if (bomb.includes(userNumber)) {
         alert('Hai preso una bomba');
+        break;
+    } else if (!userChoice.includes(userNumber)) {
+        userChoice.push(userNumber);
     } else {
         alert('Questo numero è stato già inserito');
         userNumber = parseInt(prompt('Inserisci un numero'));
