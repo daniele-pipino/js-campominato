@@ -20,6 +20,10 @@ Quando la partita termina, comunichiamo all'utente il suo punteggio. */
 
 //? -----------------------------------------SVOLGIMENTO---------------------------------------------------------
 
+// recupero elemento html per dichiarare il punteggio
+
+var score = document.getElementById('score');
+
 // Creazione dei vari array
 const bomb = [];
 let userChoice = [];
@@ -47,31 +51,34 @@ function generateBomb(min, max) {
 //* Invocazione funzione
 generateBomb(startNumber, endNumber);
 
+var scoreCounter = 0;
 
+// --------------Scelta numeri utente --------------------
 
-// --------------Scelta numeri utente--------------------
-
-while (userChoice.length < 3) {
+while (userChoice.length < 5) {
     var userNumber = parseInt(prompt('Inserisci un numero'));
     console.log(userNumber);
 
+    // validazione 
     if (isNaN(userNumber)) {
         alert('Carattere non valido')
-        var userNumber = parseInt(prompt('Inserisci un numero'));
     } else if (bomb.includes(userNumber)) {
-        alert('Hai preso una bomba');
+        alert('Hai preso una bomba');    // se è una bomba
         break;
     } else if (!userChoice.includes(userNumber)) {
         userChoice.push(userNumber);
+        scoreCounter++;
+        console.log('Punti: ', scoreCounter);
     } else {
         alert('Questo numero è stato già inserito');
-        userNumber = parseInt(prompt('Inserisci un numero'));
     }
-}
 
+    score.innerText = scoreCounter;
+}
 
 console.log(userChoice);
 
+// dichiarazione del punteggio
 
 
 
