@@ -22,6 +22,8 @@ Quando la partita termina, comunichiamo all'utente il suo punteggio. */
 
 // Creazione dei vari array
 const bomb = [];
+//? Validazione per verificre che nell'array non siano presentinumeri uguali
+
 const userChoice = [];
 
 // Generazione dei 16 numeri randomici
@@ -32,10 +34,19 @@ function generateBomb(min, max) {
 
     for (var i = 0; i <= 15; i++) {
         var randomBombnumber = Math.floor(Math.random() * (max - min) + min);
-        bomb.push(randomBombnumber);
+
+        //* Validazione per verificre che nell'array non siano presentinumeri uguali
+        if (!bomb.includes(randomBombnumber)) {
+            bomb.push(randomBombnumber);
+        } else {
+            randomBombnumber = Math.floor(Math.random() * (max - min) + min);
+            bomb.push(randomBombnumber);
+        }
     }
+
     console.log(bomb);
 }
-// todo Validazione per evitare numeri uguali dentro l'array
+
+
 //* Invocazione funzione
 generateBomb(startNumber, endNumber);
