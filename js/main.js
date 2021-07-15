@@ -26,14 +26,40 @@ var score = document.getElementById('score');
 
 // Creazione dei vari array
 const bomb = [];
-let userChoice = [];
-
-
+const userChoice = [];
+const difficulty = ['facile', 'normale', 'difficile'];
 
 // Generazione dei 16 numeri randomici
 var startNumber = 1;
-var endNumber = 100;
+var endNumber;
 
+
+
+//! BONUS 
+// Scelta difficoltà
+
+do {
+    var userDifficulty = prompt('Scegli la difficoltà', 'normale');
+} while (!userDifficulty || userDifficulty.toLocaleLowerCase().trim() === '' || userDifficulty.toLocaleLowerCase().trim() !== 'facile' && userDifficulty.toLocaleLowerCase().trim() !== 'difficile' && userDifficulty.toLocaleLowerCase().trim() !== 'normale') {
+
+}
+
+switch (userDifficulty.toLowerCase().trim()) {
+
+    case 'facile':
+        endNumber = 100;
+        break
+    case 'difficile':
+        endNumber = 50;
+    default:
+        endNumber = 80;
+        break
+}
+
+
+
+
+//* Generazione numeri randomici
 function generateBomb(min, max) {
     var randomBombnumber = 0;
     while (bomb.length < 16) {
@@ -51,6 +77,9 @@ function generateBomb(min, max) {
 //* Invocazione funzione
 generateBomb(startNumber, endNumber);
 
+// Numeri presenti in gioco
+var totalNumber = endNumber - bomb.length;
+console.log('Numeri in gioco', totalNumber);
 
 // Punteggio
 var scoreCounter = 0;
@@ -58,7 +87,7 @@ score.innerText = scoreCounter;
 
 // --------------Scelta numeri utente --------------------
 
-while (userChoice.length < 5) {
+while (userChoice.length < 5/*da sostituire con totalnumber */) {
     var userNumber = parseInt(prompt('Inserisci un numero'));
     console.log(userNumber);
 
