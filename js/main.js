@@ -44,11 +44,12 @@ var endNumber = 0;
 //! BONUS 
 // Scelta difficoltà
 
-var userDifficulty = userDifficulty.toLowerCase().trim();
+
+var userDifficulty;
 
 do {
-    var userDifficulty = prompt('Scegli la difficoltà', 'normale');
-} while (!userDifficulty || userDifficulty.toLowerCase().trim() === '' || userDifficulty.toLowerCase().trim() !== 'facile' && userDifficulty.toLowerCase().trim() !== 'difficile' && userDifficulty.toLocaleLowerCase().trim() !== 'normale');
+    userDifficulty = prompt('Scegli la difficoltà', 'normale');
+} while (!userDifficulty || userDifficulty.toLowerCase().trim() === '' || userDifficulty.toLowerCase().trim() !== 'facile' && userDifficulty.toLowerCase().trim() !== 'difficile' && userDifficulty.toLowerCase().trim() !== 'normale');
 
 switch (userDifficulty.toLowerCase().trim()) {
 
