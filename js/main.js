@@ -11,12 +11,19 @@ Quando la partita termina, comunichiamo all'utente il suo punteggio. */
 //todo Suddivisione della traccia
 
 //* 1- Creare un array conteneneti i 16 numeri generati randomicamente
-//* 2- Fare in modo che i  umeri siano diversi l'uno dall'altro
+//* 2- Fare in modo che i numeri siano diversi l'uno dall'altro
 //* 3- Chiedere al giocatore di inserire 100 - 16 volte un numero casuale che verra inserito in un array
 //* 4- Fare in modo che l'utente non scelga due numeri uguali
 //* 5- Per ogni numero che l'utente indovina guadagan un punto
 //* 6- Se il numero scelto dall'utente e tra l'array delle bombe la partita termina
 //* 7- Se la partita termina indicare all'utente il suo punteggio finale
+
+// todo BONUS SECTION
+/*BONUS: (da fare solo se funziona tutto il resto)
+all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+con difficoltà 0 => tra 1 e 100
+con difficoltà 1 => tra 1 e 80
+con difficoltà 2 => tra 1 e 50 */
 
 //? -----------------------------------------SVOLGIMENTO---------------------------------------------------------
 
@@ -31,29 +38,29 @@ const difficulty = ['facile', 'normale', 'difficile'];
 
 // Generazione dei 16 numeri randomici
 var startNumber = 1;
-var endNumber;
-
+var endNumber = 0;
 
 
 //! BONUS 
 // Scelta difficoltà
 
+var userDifficulty = userDifficulty.toLowerCase().trim();
+
 do {
     var userDifficulty = prompt('Scegli la difficoltà', 'normale');
-} while (!userDifficulty || userDifficulty.toLocaleLowerCase().trim() === '' || userDifficulty.toLocaleLowerCase().trim() !== 'facile' && userDifficulty.toLocaleLowerCase().trim() !== 'difficile' && userDifficulty.toLocaleLowerCase().trim() !== 'normale') {
-
-}
+} while (!userDifficulty || userDifficulty.toLowerCase().trim() === '' || userDifficulty.toLowerCase().trim() !== 'facile' && userDifficulty.toLowerCase().trim() !== 'difficile' && userDifficulty.toLocaleLowerCase().trim() !== 'normale');
 
 switch (userDifficulty.toLowerCase().trim()) {
 
     case 'facile':
         endNumber = 100;
-        break
+        break;
     case 'difficile':
         endNumber = 50;
+        break;
     default:
         endNumber = 80;
-        break
+        break;
 }
 
 
@@ -63,7 +70,7 @@ switch (userDifficulty.toLowerCase().trim()) {
 function generateBomb(min, max) {
     var randomBombnumber = 0;
     while (bomb.length < 16) {
-        randomBombnumber = Math.floor(Math.random() * (max - min) + min);
+        randomBombnumber = Math.floor(Math.random() * (max - min + 1) + min);
 
         //? Validazione per verificre che nell'array non siano presentinumeri uguali
         if (!bomb.includes(randomBombnumber)) {
